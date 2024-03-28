@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "name": "plataformaciberback",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeipills/plataformaciberback.git"
+  },
+  "author": "yeipills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeipills/plataformaciberback/issues"
+  },
+  "homepage": "https://github.com/yeipills/plataformaciberback#readme"
+}

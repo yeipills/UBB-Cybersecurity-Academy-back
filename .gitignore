@@ -1,18 +1,9 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node
-# Edit at https://www.toptal.com/developers/gitignore?templates=node
-
-### Node ###
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Runtime data
 pids
@@ -46,9 +37,6 @@ build/Release
 node_modules/
 jspm_packages/
 
-# Snowpack dependency directory (https://snowpack.dev/)
-web_modules/
-
 # TypeScript cache
 *.tsbuildinfo
 
@@ -76,14 +64,12 @@ web_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variable files
+# dotenv environment variables file
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+.env.test
+.env.production
 
-# parcel-bundler cache (https://parceljs.org/)
+# Parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
 
@@ -97,24 +83,16 @@ dist
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# public
+public
 
-# vuepress build output
+# Vuepress build output
 .vuepress/dist
 
-# vuepress v2.x temp and cache directory
-.temp
-
-# Docusaurus cache and generated files
-.docusaurus
-
 # Serverless directories
-.serverless/
+.serverless
 
 # FuseBox cache
-.fusebox/
+.fusebox
 
 # DynamoDB Local files
 .dynamodb/
@@ -122,23 +100,43 @@ dist
 # TernJS port file
 .tern-port
 
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
+# VS Code directories
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
 
-### Node Patch ###
-# Serverless Webpack directories
-.webpack/
+# Mac system files
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Optional stylelint cache
+# Thumbnails
+._*
 
-# SvelteKit build / generate output
-.svelte-kit
+# Files that might appear on external disk drives
+.Spotlight-V100
+.Trashes
 
-# End of https://www.toptal.com/developers/gitignore/api/node
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux system files
+*.swp
+*.swo

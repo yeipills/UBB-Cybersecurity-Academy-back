@@ -172,3 +172,16 @@ public/static/
 
 # Ignore .idx directory
 .idx/
+
+# Docker
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Build artifacts
+.gradle/
+build/
+target/
+
+# Temporary files
+tmp/
+temp/

@@ -1,18 +1,29 @@
-// Importa el módulo Express
-const express = require('express');
+const express = require("express");
+const { createClient } = require("@supabase/supabase-js");
+const cors = require("cors");
+require("dotenv").config();
 
-// Crea una aplicación Express
 const app = express();
 
-// Define el puerto en el que se ejecutará el servidor
-const port = 3000;
+// Configurar Supabase
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Define una ruta raíz y su manejador
-app.get('/', (req, res) => {
-  res.send('Hola Mundo con Express!');
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Rutas
+app.get("/data", async (req, res) => {
+  try {
+    let { data, error } = await supabase.from("mi_tabla").select("*");
+
+    if (error) throw error;
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
-// Inicia el servidor
-app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
-});
+module.exports = app;

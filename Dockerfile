@@ -1,23 +1,20 @@
-
-dockerfile
-# Usa una imagen base de Node.js con la versión LTS (Long Term Support)
+# Usar la imagen base de Node.js
 FROM node:lts
 
-# Crea un directorio de trabajo dentro del contenedor
-
+# Establecer el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copia los archivos package.json y package-lock.json al directorio de trabajo
+# Copiar el package.json y el package-lock.json al contenedor
 COPY package*.json ./
 
-# Instala las dependencias del proyecto
+# Instalar las dependencias del proyecto
 RUN npm install
 
-# Copia el resto de los archivos del proyecto al directorio de trabajo
+# Copiar el resto del código de la aplicación al contenedor
 COPY . .
 
-# Expon el puerto 3000 para que la aplicación sea accesible desde fuera del contenedor
+# Exponer el puerto 3000
 EXPOSE 3000
 
-# Define el comando para iniciar la aplicación
-CMD [ "node", "app.js" ]
+# Comando para ejecutar la aplicación
+CMD ["npm", "start"]

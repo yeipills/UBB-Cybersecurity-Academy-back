@@ -1,29 +1,35 @@
 const express = require("express");
-const { createClient } = require("@supabase/supabase-js");
-const cors = require("cors");
-require("dotenv").config();
-
 const app = express();
+const apiRoutes = require("./src/api/routes/api");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const session = require("express-session");
+const logger = require("./src/api/middleware/logger");
+const cors = require("cors");
 
-// Configurar Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Configurar CORS
+app.use(
+  cors({
+    origin: "*", // Permitir cualquier origen. Ajusta esto según tus necesidades de seguridad.
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Configurar middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: "SECRET", resave: false, saveUninitialized: true }));
 
-// Rutas
-app.get("/data", async (req, res) => {
-  try {
-    let { data, error } = await supabase.from("mi_tabla").select("*");
+// Inicializar passport
+app.use(passport.initialize());
+app.use(passport.session());
 
-    if (error) throw error;
-    res.status(200).json(data);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+// Logger middleware
+app.use(logger);
 
+// Usar rutas de API
+app.use("/api", apiRoutes);
+
+// Exportar la app de Express
 module.exports = app;
